@@ -1,0 +1,69 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "TRIPLE 15",
+      "imagen": "https://i.ibb.co/rQWn1H6/1.jpg",
+      "precio": "240000",
+      "created_at": "2023-05-03 12:35:10",
+      "updated_at": "2023-05-03 12:35:10"
+    },
+    {
+      "id": "2",
+      "nombre": "UREA",
+      "imagen": "https://i.ibb.co/WDbtjFT/2.jpg",
+      "precio": "210000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    },
+    {
+      "id": "3",
+      "nombre": "CRECER 500",
+      "imagen": "https://i.ibb.co/X7ytgC4/3.jpg",
+      "precio": "20000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    },
+    {
+      "id": "4",
+      "nombre": "PANZER",
+      "imagen": "https://i.ibb.co/LhdF4p3/4.jpg",
+      "precio": "36000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    },
+    {
+      "id": "5",
+      "nombre": "GRAMAFIN",
+      "imagen": "https://i.ibb.co/w4XfHBF/5.jpg",
+      "precio": "30000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    },
+    {
+      "id": "6",
+      "nombre": "MAIZ BULTO",
+      "imagen": "https://i.ibb.co/Bsq1NCV/6.jpg",
+      "precio": "106000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    },
+    {
+      "id": "7",
+      "nombre": "SEMILLAS",
+      "imagen": "https://i.ibb.co/W6nftNw/7.jpg",
+      "precio": "3000",
+      "created_at": "2023-05-03 12:41:29",
+      "updated_at": "2023-05-03 12:41:29"
+    }
+  ],
+  "usuarios": [
+    {
+      "nombres": "Juan2",
+      "apellidos": "Martinez2",
+      "correo": "adshdahs@ajjad",
+      "contrasena": "122332",
+      "id": "RbHhYKW"
+    }
+  ]
+}

@@ -2,15 +2,23 @@
   <div
     class="min-w-screen min-h-screen bg-secondary-content flex items-center justify-center px-5 py-5"
   >
-  <img class="object-cover fixed top-0 left-0 z-index-1 w-full h-full" src="../../assets/images/wall.png" />
+    <img
+      class="object-cover fixed top-0 left-0 z-index-1 w-full h-full"
+      src="../../assets/images/wall.png"
+    />
     <div
-      class=" text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden fixed"
+      class="text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden fixed"
       style="max-width: 1000px"
     >
       <div class="md:flex w-full">
-        <div class="hidden md:block w-1/2 bg-primary py-10 px-10 justify-center items-center bg-opacity-25 backdrop-blur-sm">
-            <img src="../../assets/images/zyro-image.png"/>
-            <h2 class="font-bold text-center text-4xl text-secondary font-sans">-AGROLTEC-</h2>
+        <div
+          v-on:click="pushHome()"
+          class="cursor-pointer hidden md:block w-1/2 bg-primary py-10 px-10 justify-center items-center bg-opacity-25 backdrop-blur-sm"
+        >
+          <img src="../../assets/images/zyro-image.png" />
+          <h2 class="font-bold text-center text-4xl text-secondary font-sans">
+            -AGROLTEC-
+          </h2>
         </div>
         <div class="w-full md:w-1/2 py-10 px-5 md:px-10 bg-gray-100">
           <div class="text-center mb-10">
@@ -35,6 +43,7 @@
                   <input
                     type="text"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
+                    v-model="Nombres"
                   />
                 </div>
               </div>
@@ -53,6 +62,7 @@
                   <input
                     type="text"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3 py-2"
+                    v-model="Apellidos"
                   />
                 </div>
               </div>
@@ -70,6 +80,7 @@
                     type="email"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
                     placeholder="example@example.com"
+                    v-model="Correo"
                   />
                 </div>
               </div>
@@ -89,13 +100,17 @@
                     type="password"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
                     placeholder="************"
+                    v-model="Contrasena"
                   />
                 </div>
               </div>
             </div>
             <div class="flex -mx-3">
               <div class="w-full px-3 mb-5">
-                <button class="btn btn-primary font-bold block w-full max-w-xs mx-auto">
+                <button
+                  class="btn btn-primary font-bold block w-full max-w-xs mx-auto"
+                  v-on:click="handleRegister()"
+                >
                   REGISTRARSE
                 </button>
               </div>
@@ -110,3 +125,72 @@
 <style>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css");
 </style>
+
+<script>
+import axios from "axios";
+const BASE_URL = import.meta.env.VITE_APP_RUTA_API;
+export default {
+  data: () => {
+    return {
+      Nombres: "",
+      Apellidos: "",
+      Correo: "",
+      Contrasena: "",
+    };
+  },
+  methods: {
+    pushHome(){
+      this.$router.push('/')
+    },
+    showAlert() {
+      this.$swal({
+        position: "top-end",
+        icon: "success",
+        title: "Usuario creado con exito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    showFailAlert() {
+      this.$swal({
+        position: "top-end",
+        icon: "warning",
+        title: "Algo salio mal",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    handleClean() {
+      this.Nombres = "";
+      this.Apellidos = "";
+      this.Correo = "";
+      this.Contrasena = "";
+    },
+    handleRegister() {
+      if (
+        this.Nombres !== "" &&
+        this.Apellidos !== "" &&
+        this.Correo !== "" &&
+        this.Contrasena !== ""
+      ) {
+        axios
+          .post(BASE_URL + "/usuarios", {
+            nombres: this.Nombres,
+            apellidos: this.Apellidos,
+            correo: this.Correo,
+            contrasena: this.Contrasena,
+          })
+          .then(() => {
+            this.handleClean();
+            this.showAlert();
+            setTimeout(() => {
+              this.pushHome()
+            }, 2000);
+          });
+      }else{
+        this.showFailAlert()
+      }
+    },
+  },
+};
+</script>

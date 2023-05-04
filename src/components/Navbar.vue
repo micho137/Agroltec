@@ -4,8 +4,10 @@
   >
     <h1 class="w-3/12">
       <a class="flex justify-center items-center" href="">
-        <img class="h-16" src="../assets/images/zyro-image.png" alt="logo"/>
-        <p class="text-xl font-bold">AGROL<span class="text-primary">TEC</span> S.A.S.</p>
+        <img class="h-16" src="../assets/images/zyro-image.png" alt="logo" />
+        <p class="text-xl font-bold">
+          AGROL<span class="text-primary">TEC</span> S.A.S.
+        </p>
       </a>
     </h1>
 
@@ -24,7 +26,7 @@
         <li
           class="p-4 border-b-2 border-primary border-opacity-0 hover:border-opacity-100 hover:text-primary duration-200 cursor-pointer"
         >
-          <a href="/contacto">Contacto</a>
+          <a href="/historial">Historial</a>
         </li>
       </ul>
     </nav>
@@ -47,6 +49,9 @@
             class=""
           ></path>
         </svg>
+      </a>
+      <a href="/login">
+        <label class="font-semibold mx-5 text-lg hover:text-primary duration-200 cursor-pointer">Login</label>
       </a>
     </div>
   </header>
