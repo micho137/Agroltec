@@ -14,7 +14,7 @@
           </figure>
           <div class="card-body items-center text-center">
             <h2 class="card-title">{{ producto.nombre }}</h2>
-            <p class="text-lg">$ {{ producto.precio }}</p>
+            <p class="text-lg font-semibold">$ <span class="text-primary">{{ producto.precio }}</span></p>
             <div class="flex justify-center items-center gap-x-5">
               <!-- <button class="bg-primary rounded-full w-full px-2 focus:bg-primary-focus hover:bg-primary-focus">
                 <i class="mdi mdi-plus mdi-24px"></i>
@@ -22,7 +22,7 @@
               <button class="bg-primary rounded-full w-full px-2 focus:bg-primary-focus hover:bg-primary-focus">
                 <i class="mdi mdi-minus mdi-24px"></i>
               </button> -->
-              <button class="bg-primary text-white font-bold py-2 rounded-full w-full px-2 focus:bg-primary-focus hover:bg-primary-focus">Añadir al Carrito</button>
+              <button v-on:click="showAlert()" class="bg-primary text-white font-bold py-2 rounded-full w-full px-2 focus:bg-primary-focus hover:bg-primary-focus">Añadir al Carrito</button>
             </div>
           </div>
         </div>
@@ -46,6 +46,14 @@ export default {
     };
   },
   methods: {
+    showAlert() {
+      this.$swal({
+        icon: "success",
+        title: "Producto agregado al carrito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
     getProducts() {
       axios.get(BASE_URL + "/productos").then((response) => {
         this.Productos = response.data;

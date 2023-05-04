@@ -14,7 +14,11 @@
         <div
           class="md:flex h-10 bg-primary py-10 px-10 justify-center items-center bg-opacity-25 backdrop-blur-sm"
         >
-          <img v-on:click="navigateHome()" class="h-20 cursor-pointer" src="../../assets/images/zyro-image.png" />
+          <img
+            v-on:click="navigateHome()"
+            class="h-20 cursor-pointer"
+            src="../../assets/images/zyro-image.png"
+          />
         </div>
         <div class="py-10 px-5 md:px-10 bg-gray-100">
           <div class="text-center mb-10">
@@ -117,32 +121,45 @@ export default {
         timer: 1500,
       });
     },
+    showFailAlert2() {
+      this.$swal({
+        position: "top-end",
+        icon: "warning",
+        title: "Algo salio mal",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
     handleClean() {
       this.correo = "";
       this.contrasena = "";
     },
     login() {
-      axios
-        .post(BASE_URL + "/usuarios", {
-          correo: this.correo,
-          contrasena: this.contrasena,
-        })
-        .then((response) => {
-          this.showAlert();
-          setTimeout(() => {
+      if (this.correo !== "" && this.contrasena !== "") {
+        axios
+          .post(BASE_URL + "/usuarios", {
+            correo: this.correo,
+            contrasena: this.contrasena,
+          })
+          .then((response) => {
+            this.showAlert();
+            setTimeout(() => {
               this.$router.push("/");
             }, 2000);
-        })
-        .catch((error) => {
-          this.showFailAlert()
-        });
+          })
+          .catch((error) => {
+            this.showFailAlert2();
+          });
+      } else {
+        this.showFailAlert();
+      }
     },
     handleRegister() {
       this.$router.push("/register");
     },
     navigateHome() {
       this.$router.push("/");
-    }
+    },
   },
 };
 </script>

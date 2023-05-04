@@ -153,9 +153,16 @@ export default {
     },
     showFailAlert() {
       this.$swal({
-        position: "top-end",
         icon: "warning",
         title: "Algo salio mal",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    showFailAlert2() {
+      this.$swal({
+        icon: "warning",
+        title: "Debes completar todos los datos",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -188,7 +195,7 @@ export default {
             }, 2000);
           });
       }else{
-        this.showFailAlert()
+        this.showFailAlert2()
       }
     },
   },
