@@ -63,7 +63,8 @@
       "apellidos": "Luiso",
       "correo": "Luis@luis.com",
       "contrasena": "1234",
-      "id": 1
+      "id": 1,
+      "rol": "ADMIN"
     },
     {
       "correo": "Luis@luis.com",
@@ -71,31 +72,19 @@
       "id": 2
     },
     {
-      "nombres": "Michaen",
-      "apellidos": "Rangel",
-      "correo": "micho",
-      "contrasena": "12345",
+      "correo": "blapslie0@hubpages.com",
+      "contrasena": "I35lPFigJW",
       "id": 3
     },
     {
-      "correo": "Luis@luis.com",
-      "contrasena": "1234",
+      "correo": "blapslie0@hubpages.com",
+      "contrasena": "I35lPFigJW",
       "id": 4
     },
     {
-      "correo": "Luis@luis.com",
-      "contrasena": "1234",
+      "correo": "blapslie0@hubpages.com",
+      "contrasena": "I35lPFigJW",
       "id": 5
-    },
-    {
-      "correo": "Luis@luis.com",
-      "contrasena": "1234",
-      "id": 6
-    },
-    {
-      "correo": "Luis@luis.com",
-      "contrasena": "1234",
-      "id": 7
     }
   ]
 }

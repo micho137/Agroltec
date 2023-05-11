@@ -7,6 +7,7 @@ import Register from "../views/Auth/Register.vue";
 import Productos from "../views/shop/Productos.vue";
 import Carrito from "../views/shop/Carrito.vue";
 import Historial from "../views/history/Historial.vue";
+import CrudProducto from "../views/Admin/CrudProducto.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -44,6 +45,11 @@ const router = createRouter({
       name: "carrito",
       component: Carrito,
     },
+    {
+      path: "/adminDashboard",
+      name: "adminDashboard",
+      component: CrudProducto,
+    },
   ],
 });
 
@@ -55,11 +61,21 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.beforeEach((to)=>{
-  const store = useLoginStore()
-  const publicPage = ['/login','/register']
-  const authRequire = !publicPage.includes(to.path)
-  if( authRequire && !store.authUser) return '/login'
-})
+router.beforeEach((to, from, next) => {
+  const store = useLoginStore();
+  const publicPage = ["/login", "/register"];
+  const adminPage = ["/adminDashboard"];
+  const authRequire = !publicPage.includes(to.path);
+  if (authRequire && !store.authUser) {
+    return next("/login");
+  }
+  if (store.authUser) {
+    const isAdmin = store.authUser.rol === "ADMIN";
+    if (adminPage.includes(to.path) && !isAdmin) {
+      next("/");
+    }
+  }
+  next();
+});
 
 export default router;

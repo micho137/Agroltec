@@ -3,14 +3,14 @@
     class="bg-[url('../assets/images/agronomia.jpg')] bg-cover w-full h-full fixed flex justify-center items-center"
   >
     <div class="container mx-auto mt-10">
-      <div class="flex shadow-md my-10">
-        <div class="w-3/4 bg-white px-10 py-10 rounded-l-xl">
+      <div class="flex shadow-md h-[750px] mb-16">
+        <div class="flex flex-col w-3/4 bg-white px-10 py-10 rounded-l-xl h-full">
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Carrito de compras</h1>
 
             <h2 class="font-semibold text-2xl">{{ data.countCartItems }} Productos</h2>
           </div>
-          <div class="flex mt-10 mb-5">
+          <div class="flex mt-10 mb-5 pl-10">
             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">
               Detalle del producto
             </h3>
@@ -30,7 +30,8 @@
               Total
             </h3>
           </div>
-          <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="item in data.getCartItems" :key="item.id">
+          <div class="pl-10 h-full overflow-y-scroll overflow-x-hidden">
+            <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="item in data.getCartItems" :key="item.id">
             <div class="flex w-2/5">
               <div class="w-20">
                 <img
@@ -61,6 +62,7 @@
                 class="mx-2 border text-center w-8"
                 type="text"
                 :value="item.quantity"
+                disabled
               />
 
               <svg @click="data.incrementQ(item)" class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
@@ -71,6 +73,7 @@
             </div>
             <span class="text-center w-1/5 font-semibold text-sm">${{ item.precio }}</span>
             <span class="text-center w-1/5 font-semibold text-sm">${{ item.precio * item.quantity}}</span>
+          </div>
           </div>
 
           <a href="/productos" class="flex font-semibold text-primary text-sm mt-10">

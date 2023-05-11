@@ -28,6 +28,12 @@
         >
           <a href="/historial">Historial</a>
         </li>
+        <li
+          v-if="adminCheck"
+          class="p-4 border-b-2 border-primary border-opacity-0 hover:border-opacity-100 hover:text-primary duration-200 cursor-pointer"
+        >
+          <a href="/adminDashboard">Admin</a>
+        </li>
       </ul>
     </nav>
 
@@ -57,25 +63,33 @@
         </a>
       </div>
       <a @click="cerrarSesion()">
-        <label class="font-semibold mx-5 text-lg hover:text-primary duration-200 cursor-pointer">Logout</label>
+        <label
+          class="font-semibold mx-5 text-lg hover:text-primary duration-200 cursor-pointer"
+          >Logout</label
+        >
       </a>
     </div>
   </header>
 </template>
 
 <script>
-import { useProductStore } from '../stores/ProductStore';
-import { useLoginStore } from '../stores/LoginStore';
-export default{
-  setup(){
-    const store = useProductStore()
-    const authStore = useLoginStore()
-    return{
+import { useProductStore } from "../stores/ProductStore";
+import { useLoginStore } from "../stores/LoginStore";
+export default {
+  setup() {
+    const store = useProductStore();
+    const authStore = useLoginStore();
+    return {
       store,
-      authStore
+      authStore,
+    };
+  },
+  data: () => {
+    return{
+      adminCheck: false
     }
   },
-  methods:{
+  methods: {
     showLogout() {
       this.$swal({
         icon: "success",
@@ -84,9 +98,17 @@ export default{
         timer: 1500,
       });
     },
-    cerrarSesion(){
-      this.authStore.logout(this.showLogout())
+    cerrarSesion() {
+      this.authStore.logout(this.showLogout);
+    },
+    validateAdmin(){
+      if (this.authStore.authUser.rol === "ADMIN") {
+      this.adminCheck = true
     }
-  }
-}
+    }
+  },
+  mounted() {
+    this.validateAdmin()
+  },
+};
 </script>
