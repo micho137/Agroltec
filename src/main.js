@@ -7,10 +7,9 @@ import router from './router'
 import './assets/index.css'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
-const app = createApp(App)
-const pinia = createPinia()
-
-app.use(pinia).use(router).use(VueSweetalert2)
+const pinia = createPinia().use(piniaPluginPersistedstate)
+const app = createApp(App).use(pinia).use(router).use(VueSweetalert2)
 
 app.mount('#app')

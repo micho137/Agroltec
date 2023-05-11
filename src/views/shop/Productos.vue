@@ -61,16 +61,15 @@
 <script>
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_APP_RUTA_API;
-import { useProductStoreStore } from "../../stores/ProductStore";
+import { useProductStore } from "../../stores/ProductStore";
 
 export default {
   setup() {
-    const store = useProductStoreStore();
-
-    return {
-      productos: store.productos,
-      getProductos: store.getProductos,
-    };
+    const store = useProductStore()
+    store.fetchProducts()
+    return{
+      store
+    }
   },
   data: () => {
     return {
