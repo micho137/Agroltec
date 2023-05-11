@@ -3,7 +3,7 @@
     class="w-full h-full bg-[url('../assets/images/wall.png')] object-cover flex justify-evenly items-center"
   >
     <div
-      class="overflow-y-scroll max-h-[700px] border-2 border-primary rounded-t-xl"
+      class="overflow-y-scroll max-h-[700px] min-w-[900px] border-2 border-primary rounded-t-xl"
     >
       <table class="flex flex-col justify-center items-center">
         <thead class="sticky top-0 bg-primary text-white rounded-t-lg w-full">
@@ -15,7 +15,7 @@
             <th class="px-4 py-2">Funcion</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-primary bg-white">
+        <tbody class="divide-y divide-primary bg-white w-full">
           <tr
             class="flex justify-evenly items-center"
             v-for="(producto, index) in Productos"
@@ -28,7 +28,7 @@
             <td class="px-4 py-2">{{ producto.nombre }}</td>
             <td class="px-4 py-2">${{ producto.precio }}</td>
             <td class="px-4 py-2">
-              <a v-on:click="showAlert()" href="#">
+              <a v-on:click="store.addToCart(producto)" href="#">
                 <svg
                   class="h-8 p-1 hover:text-primary duration-200"
                   aria-hidden="true"
@@ -66,7 +66,6 @@ import { useProductStore } from "../../stores/ProductStore";
 export default {
   setup() {
     const store = useProductStore()
-    store.fetchProducts()
     return{
       store
     }

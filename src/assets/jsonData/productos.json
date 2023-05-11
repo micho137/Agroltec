@@ -58,22 +58,6 @@
     }
   ],
   "usuarios": [
-    {
-      "nombres": "Juan2",
-      "apellidos": "Martinez2",
-      "correo": "adshdahs@ajjad",
-      "contrasena": "122332",
-      "id": "RbHhYKW"
-    },
-    {
-      "correo": "",
-      "contrasena": "",
-      "id": "U6mtqhD"
-    },
-    {
-      "correo": "adshdahs@ajjad",
-      "contrasena": "122332",
-      "id": "FhgsrdZ"
-    }
+    
   ]
 }
