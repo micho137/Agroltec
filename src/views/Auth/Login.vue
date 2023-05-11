@@ -95,8 +95,14 @@
 
 <script>
 import axios from "axios";
-const BASE_URL = import.meta.env.VITE_APP_RUTA_API;
+import { useLoginStore } from "../../stores/LoginStore";
 export default {
+  setup() {
+    const authStore = useLoginStore();
+    return {
+      authStore,
+    };
+  },
   data: () => {
     return {
       correo: "",
@@ -136,11 +142,12 @@ export default {
     },
     login() {
       if (this.correo !== "" && this.contrasena !== "") {
-        axios
-          .post(BASE_URL + "/usuarios", {
-            correo: this.correo,
-            contrasena: this.contrasena,
-          })
+        var payload = {
+          correo: this.correo,
+          contrasena: this.contrasena,
+        };
+        this.authStore.vLogin(payload)
+          
           .then((response) => {
             this.showAlert();
             setTimeout(() => {

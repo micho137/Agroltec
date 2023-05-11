@@ -191,7 +191,7 @@ export default {
             this.handleClean();
             this.showAlert();
             setTimeout(() => {
-              this.pushHome()
+              this.$router.push('/login')
             }, 2000);
           });
       }else{

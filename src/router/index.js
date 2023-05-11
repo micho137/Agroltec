@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useLoginStore } from "../stores/LoginStore";
+
 import Home from "../views/Home.vue";
 import Login from "../views/Auth/Login.vue";
 import Register from "../views/Auth/Register.vue";
@@ -52,5 +54,12 @@ router.beforeEach((to, from, next) => {
   localStorage.setItem("historial", JSON.stringify(historial));
   next();
 });
+
+router.beforeEach((to)=>{
+  const store = useLoginStore()
+  const publicPage = ['/login','/register']
+  const authRequire = !publicPage.includes(to.path)
+  if( authRequire && !store.authUser) return '/login'
+})
 
 export default router;

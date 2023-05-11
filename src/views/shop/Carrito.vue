@@ -8,7 +8,7 @@
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Carrito de compras</h1>
 
-            <h2 class="font-semibold text-2xl">3 Items</h2>
+            <h2 class="font-semibold text-2xl">{{ data.countCartItems }} Productos</h2>
           </div>
           <div class="flex mt-10 mb-5">
             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">
@@ -90,14 +90,14 @@
           id="summary"
           class="w-1/4 px-8 py-10 bg-primary rounded-r-xl text-white"
         >
-          <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+          <h1 class="font-semibold text-2xl border-b pb-8">Detalles Carrito</h1>
           <div class="flex justify-between mt-10 mb-5">
-            <span class="font-semibold text-lg uppercase">Items 3</span>
+            <span class="font-semibold text-lg uppercase">{{ data.countCartItems }} Productos</span>
           </div>
           <div class="border-t mt-8">
             <div class="flex font-bold justify-between py-6 text-lg uppercase">
-              <span>Total cost</span>
-              <span>$600</span>
+              <span>Precio Total</span>
+              <span>${{ data.cartItems.reduce((acc,item) => acc += item.price * item.quantity,0) }}</span>
             </div>
             <button
               class="bg-secondary font-bold hover:bg-secondary-focus py-3 text-sm text-primary-focus uppercase w-full"

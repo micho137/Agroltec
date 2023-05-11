@@ -58,6 +58,44 @@
     }
   ],
   "usuarios": [
-    
+    {
+      "nombres": "Luis",
+      "apellidos": "Luiso",
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 1
+    },
+    {
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 2
+    },
+    {
+      "nombres": "Michaen",
+      "apellidos": "Rangel",
+      "correo": "micho",
+      "contrasena": "12345",
+      "id": 3
+    },
+    {
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 4
+    },
+    {
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 5
+    },
+    {
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 6
+    },
+    {
+      "correo": "Luis@luis.com",
+      "contrasena": "1234",
+      "id": 7
+    }
   ]
 }

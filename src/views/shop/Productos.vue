@@ -76,14 +76,6 @@ export default {
     };
   },
   methods: {
-    showAlert() {
-      this.$swal({
-        icon: "success",
-        title: "Producto agregado al carrito",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    },
     getProducts() {
       axios.get(BASE_URL + "/productos").then((response) => {
         this.Productos = response.data;

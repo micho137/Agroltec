@@ -35,7 +35,7 @@
       <div class="indicator">
         <span
           class="indicator-item badge badge-secondary font-bold cursor-default"
-          >2</span
+          >{{ store.countCartItems }}</span
         >
         <a href="/carrito">
           <svg
@@ -56,9 +56,37 @@
           </svg>
         </a>
       </div>
-      <a href="/login">
-        <label class="font-semibold mx-5 text-lg hover:text-primary duration-200 cursor-pointer">Login</label>
+      <a @click="cerrarSesion()">
+        <label class="font-semibold mx-5 text-lg hover:text-primary duration-200 cursor-pointer">Logout</label>
       </a>
     </div>
   </header>
 </template>
+
+<script>
+import { useProductStore } from '../stores/ProductStore';
+import { useLoginStore } from '../stores/LoginStore';
+export default{
+  setup(){
+    const store = useProductStore()
+    const authStore = useLoginStore()
+    return{
+      store,
+      authStore
+    }
+  },
+  methods:{
+    showLogout() {
+      this.$swal({
+        icon: "success",
+        title: "Cerrando sesion, espere unos segundos",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    cerrarSesion(){
+      this.authStore.logout(this.showLogout())
+    }
+  }
+}
+</script>

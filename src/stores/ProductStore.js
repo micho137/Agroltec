@@ -52,13 +52,7 @@ export const useProductStore = defineStore("ProductStore", {
       let index = this.cartItems.findIndex((product) => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-      }Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Producto actualizado',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      }
     },
     decrementQ(item) {
       let index = this.cartItems.findIndex((product) => product.id === item.id);
@@ -69,13 +63,6 @@ export const useProductStore = defineStore("ProductStore", {
             (product) => product.id !== item.id
           );
         }
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Producto actualizado',
-            showConfirmButton: false,
-            timer: 1500
-          });
       }
     },
     removeFromCart(item) {
