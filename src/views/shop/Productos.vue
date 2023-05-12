@@ -18,7 +18,7 @@
         <tbody class="divide-y divide-primary bg-white w-full">
           <tr
             class="flex justify-evenly items-center"
-            v-for="(producto, index) in Productos"
+            v-for="(producto, index) in store.getProducts"
             :key="index"
           >
             <td class="px-4 py-2">{{ producto.id }}</td>
@@ -59,31 +59,15 @@
 </style>
 
 <script>
-import axios from "axios";
-const BASE_URL = import.meta.env.VITE_APP_RUTA_API;
 import { useProductStore } from "../../stores/ProductStore";
 
 export default {
   setup() {
     const store = useProductStore()
+    store.fetchProducts();
     return{
       store
     }
-  },
-  data: () => {
-    return {
-      Productos: null,
-    };
-  },
-  methods: {
-    getProducts() {
-      axios.get(BASE_URL + "/productos").then((response) => {
-        this.Productos = response.data;
-      });
-    },
-  },
-  mounted() {
-    this.getProducts();
   },
 };
 </script>
