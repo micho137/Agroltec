@@ -1,9 +1,15 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-
+const axiosConfig = {
+  'Content-Type':'application/json;charset=UTF-8',
+  "Acces-Control-Allow-Origin":"*",
+  'Acces-Control-Allow-Methods':'*'
+}
 const devRuta = import.meta.env.VITE_APP_RUTA_API;
+axios.defaults.baseURL=devRuta
+axios.defaults.headers.common = axiosConfig
 
+import Swal from "sweetalert2/dist/sweetalert2.js";
 export const useProductStore = defineStore("ProductStore", {
   state: () => ({
     products: [],
