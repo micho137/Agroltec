@@ -38,6 +38,8 @@
                     showEditAlert(
                       producto.id,
                       producto.imagen,
+                      producto.stock,
+                      producto.descripcion,
                       producto.nombre,
                       producto.precio,
                       index
@@ -47,7 +49,7 @@
                 >
                   Editar
                 </button>
-                <button class="btn btn-warning">Eliminar</button>
+                <button @click="deleteProduct(producto.id)" class="btn btn-warning">Eliminar</button>
               </div>
             </td>
           </tr>
@@ -67,8 +69,8 @@ import { ref } from "vue";
 
 export default {
   methods: {
-    showEditAlert(id, imagen, nombre, precio, index) {
-      const data = { id, imagen, nombre, precio };
+    showEditAlert(id, imagen, stock, descripcion, name, price, index) {
+      const data = { id, imagen, stock, descripcion, name, price };
 
       this.$swal({
         title: "Editar Producto",
@@ -95,9 +97,9 @@ export default {
             });
           } else {
             return [
-              (data.nombre = document.getElementById("swal-input1").value),
+              (data.name = document.getElementById("swal-input1").value),
               (data.imagen = document.getElementById("swal-input2").value),
-              (data.precio = document.getElementById("swal-input3").value),
+              (data.price = document.getElementById("swal-input3").value),
               this.store.editProduct(index, data),
               (this.editedProduct = this.store.products[index]),
             ];
@@ -105,13 +107,15 @@ export default {
         },
       });
     },
+    deleteProduct(id){
+      this.store.deleteProducts(id)
+    }
   },
   setup() {
     const store = useProductStore();
     store.fetchProducts();
 
     const editedProduct = ref(null);
-
     return {
       store,
       editedProduct,

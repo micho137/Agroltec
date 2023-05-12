@@ -57,7 +57,17 @@ export const useProductStore = defineStore("ProductStore", {
         });
       }
     },
-    deleteProducts(product) {},
+    async deleteProducts(productID) {
+      const response = await axios.delete(`${devRuta}/tienda/inventario/productos/${productID}`)
+      this.$state.products = this.$state.products.filter(product=>product.id !== productID)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Producto eliminado',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    },
     addToCart(item) {
       let index = this.cartItems.findIndex((product) => product.id === item.id);
       if (index !== -1) {
