@@ -28,25 +28,14 @@ export const useProductStore = defineStore("ProductStore", {
   },
   actions: {
     async fetchProducts() {
-      const response = await axios.get(devRuta+"/tienda/inventario/productos/")
+      const response = await axios.get(devRuta+"/tienda/inventario/productos")
       this.$state.products = response.data
     },
-    /* editProducts(productoToUpdate, newValue){
-      const index = this.products.findIndex(product=>product.id === productoToUpdate.id)
-      if (index !== -1){
-        this.products[index] = {...productoToUpdate,...newValue}
-        Swal.fire({
-          icon:'succes',
-          title:'Producto actualizado',
-          showConfirmButton:false,
-          timer: 1500
-        })
-      }
-    }, */
+    
     async editProduct(productIndex, newData){
       const productId = this.products[productIndex].id
       try {
-        const response = await axios.put(`${devRuta}/productos/${productId}/`,newData)
+        const response = await axios.put(`${devRuta}/tienda/inventario/productos/${productId}`,newData)
         this.products[productIndex] = response.data
         Swal.fire({
           icon: 'success',

@@ -41,7 +41,7 @@
                 />
               </div>
               <div class="flex flex-col justify-between ml-4">
-                <span class="font-bold text-sm">{{ item.nombre }}</span>
+                <span class="font-bold text-sm">{{ item.name }}</span>
                 <a
                 @click="data.removeFromCart(item)"
                   href="#"
@@ -71,8 +71,8 @@
                 />
               </svg>
             </div>
-            <span class="text-center w-1/5 font-semibold text-sm">${{ item.precio }}</span>
-            <span class="text-center w-1/5 font-semibold text-sm">${{ item.precio * item.quantity}}</span>
+            <span class="text-center w-1/5 font-semibold text-sm">${{ item.price }}</span>
+            <span class="text-center w-1/5 font-semibold text-sm">${{ item.price * item.quantity}}</span>
           </div>
           </div>
 

@@ -26,11 +26,11 @@
               <img
                 class="h-24 w-20"
                 :src="producto.imagen"
-                :alt="producto.nombre"
+                :alt="producto.name"
               />
             </td>
-            <td class="px-4 py-2">{{ producto.nombre }}</td>
-            <td class="px-4 py-2">${{ producto.precio }}</td>
+            <td class="px-4 py-2">{{ producto.name }}</td>
+            <td class="px-4 py-2">${{ producto.price }}</td>
             <td class="px-4 py-2">
               <div class="flex flex-col gap-y-3">
                 <button
@@ -38,8 +38,10 @@
                     showEditAlert(
                       producto.id,
                       producto.imagen,
-                      producto.nombre,
-                      producto.precio,
+                      producto.stock,
+                      producto.description,
+                      producto.name,
+                      producto.price,
                       index
                     )
                   "
@@ -67,15 +69,15 @@ import { ref } from "vue";
 
 export default {
   methods: {
-    showEditAlert(id, imagen, nombre, precio, index) {
-      const data = { id, imagen, nombre, precio };
+    showEditAlert(id, imagen, stock, description, name, price, index) {
+      const data = { id, imagen, stock, description, name, price };
 
       this.$swal({
         title: "Editar Producto",
         html:
-          `<div style="display:flex;justify-content:center;flex-direction:column;margin-bottom: 10px"><label><strong>Nombre del Producto</strong></label><input style="text-align:center" value='${data.nombre}' placeholder="Nombre del Producto" id="swal-input1" class="swal2-input"></div>` +
+          `<div style="display:flex;justify-content:center;flex-direction:column;margin-bottom: 10px"><label><strong>Nombre del Producto</strong></label><input style="text-align:center" value='${data.name}' placeholder="Nombre del Producto" id="swal-input1" class="swal2-input"></div>` +
           `<div style="display:flex;justify-content:center;flex-direction:column;margin-bottom: 10px"><label><strong>Imagen del Producto(URL)</strong></label><input style="text-align:center" value='${data.imagen}' placeholder="Imagen del Producto" id="swal-input2" class="swal2-input"></div>` +
-          `<div style="display:flex;justify-content:center;flex-direction:column;margin-bottom: 10px"><label><strong>Precio del Producto</strong></label><input style="text-align:center" value='${data.precio}' placeholder="Precio del Producto" id="swal-input3" class="swal2-input"></div>`,
+          `<div style="display:flex;justify-content:center;flex-direction:column;margin-bottom: 10px"><label><strong>Precio del Producto</strong></label><input style="text-align:center" value='${data.price}' placeholder="Precio del Producto" id="swal-input3" class="swal2-input"></div>`,
         showCancelButton: true,
         focusConfirm: false,
         confirmButtonText: "Editar",
@@ -95,9 +97,9 @@ export default {
             });
           } else {
             return [
-              (data.nombre = document.getElementById("swal-input1").value),
+              (data.name = document.getElementById("swal-input1").value),
               (data.imagen = document.getElementById("swal-input2").value),
-              (data.precio = document.getElementById("swal-input3").value),
+              (data.price = document.getElementById("swal-input3").value),
               this.store.editProduct(index, data),
               (this.editedProduct = this.store.products[index]),
             ];

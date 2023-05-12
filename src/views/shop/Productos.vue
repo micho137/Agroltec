@@ -25,8 +25,8 @@
             <td class="px-4 py-2 flex justify-center items-center">
               <img class="" :src="producto.imagen" alt="producto" />
             </td>
-            <td class="px-4 py-2">{{ producto.nombre }}</td>
-            <td class="px-4 py-2">${{ producto.precio }}</td>
+            <td class="px-4 py-2">{{ producto.name }}</td>
+            <td class="px-4 py-2">${{ producto.price }}</td>
             <td class="px-4 py-2">
               <a v-on:click="store.addToCart(producto)" href="#">
                 <svg
