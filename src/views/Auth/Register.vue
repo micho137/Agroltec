@@ -41,6 +41,7 @@
                     ></i>
                   </div>
                   <input
+                    placeholder="Name Example"
                     type="text"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
                     v-model="Nombres"
@@ -60,6 +61,7 @@
                     ></i>
                   </div>
                   <input
+                    placeholder="lastname Example"
                     type="text"
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3 py-2"
                     v-model="Apellidos"
@@ -67,6 +69,7 @@
                 </div>
               </div>
             </div>
+
             <div class="flex -mx-3">
               <div class="w-full px-3 mb-5">
                 <label for="" class="text-md font-semibold px-1">Email</label>
@@ -81,6 +84,44 @@
                     class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
                     placeholder="example@example.com"
                     v-model="Correo"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="flex -mx-3">
+              <div class="w-full px-3 mb-5">
+                <label for="" class="text-md font-semibold px-1"
+                  >Direccion</label
+                >
+                <div class="flex">
+                  <div
+                    class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                  >
+                    <i class="mdi mdi-bike text-gray-400 text-lg"></i>
+                  </div>
+                  <input
+                    type="text"
+                    class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
+                    placeholder="Cra # 00000"
+                    v-model="Direccion"
+                  />
+                </div>
+              </div>
+              <div class="w-full px-3 mb-5">
+                <label for="" class="text-md font-semibold px-1"
+                  >Identificacion</label
+                >
+                <div class="flex">
+                  <div
+                    class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                  >
+                    <i class="mdi mdi-fingerprint text-gray-400 text-lg"></i>
+                  </div>
+                  <input
+                    type="text"
+                    class="input input-bordered input-primary w-full -ml-10 pl-10 pr-3"
+                    placeholder="N° 00000000000"
+                    v-model="Identificacion"
                   />
                 </div>
               </div>
@@ -135,12 +176,15 @@ export default {
       Nombres: "",
       Apellidos: "",
       Correo: "",
+      Usuario: "",
+      Direccion: "",
+      Identificacion: "",
       Contrasena: "",
     };
   },
   methods: {
-    pushHome(){
-      this.$router.push('/')
+    pushHome() {
+      this.$router.push("/");
     },
     showAlert() {
       this.$swal({
@@ -171,6 +215,9 @@ export default {
       this.Nombres = "";
       this.Apellidos = "";
       this.Correo = "";
+      this.Identificacion = "";
+      this.Usuario = "";
+      this.Direccion = "";
       this.Contrasena = "";
     },
     handleRegister() {
@@ -178,24 +225,30 @@ export default {
         this.Nombres !== "" &&
         this.Apellidos !== "" &&
         this.Correo !== "" &&
-        this.Contrasena !== ""
+        this.Contrasena !== "" &&
+        this.Identificacion !== "" &&
+        this.Direccion !== ""
       ) {
         axios
-          .post(BASE_URL + "/usuarios", {
-            nombres: this.Nombres,
-            apellidos: this.Apellidos,
+          .post(BASE_URL + "/users", {
+            nombre: this.Nombres,
+            apellido: this.Apellidos,
+            direccion:this.Direccion,
+            usuario:this.Correo,
+            rol:"USER",
+            identificacion:this.Identificacion,
             correo: this.Correo,
-            contrasena: this.Contrasena,
+            contraseña: this.Contrasena,
           })
           .then(() => {
             this.handleClean();
             this.showAlert();
             setTimeout(() => {
-              this.$router.push('/login')
+              this.$router.push("/login");
             }, 2000);
           });
-      }else{
-        this.showFailAlert2()
+      } else {
+        this.showFailAlert2();
       }
     },
   },

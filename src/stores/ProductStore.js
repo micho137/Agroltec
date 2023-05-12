@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 const axiosConfig = {
-  'Content-Type':'application/json;charset=UTF-8',
-  "Acces-Control-Allow-Origin":"*",
-  'Acces-Control-Allow-Methods':'*'
-}
+  "Content-Type": "application/json;charset=UTF-8",
+  "Acces-Control-Allow-Origin": "*",
+  "Acces-Control-Allow-Methods": "*",
+};
 const devRuta = import.meta.env.VITE_APP_RUTA_API;
-axios.defaults.baseURL=devRuta
-axios.defaults.headers.common = axiosConfig
+axios.defaults.baseURL = devRuta;
+axios.defaults.headers.common = axiosConfig;
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 export const useProductStore = defineStore("ProductStore", {
@@ -28,47 +28,36 @@ export const useProductStore = defineStore("ProductStore", {
   },
   actions: {
     async fetchProducts() {
-      const response = await axios.get(devRuta+"/tienda/inventario/productos/")
-      this.$state.products = response.data
+      const response = await axios.get(
+        devRuta + "/tienda/inventario/productos"
+      );
+      this.$state.products = response.data;
     },
-    /* editProducts(productoToUpdate, newValue){
-      const index = this.products.findIndex(product=>product.id === productoToUpdate.id)
-      if (index !== -1){
-        this.products[index] = {...productoToUpdate,...newValue}
-        Swal.fire({
-          icon:'succes',
-          title:'Producto actualizado',
-          showConfirmButton:false,
-          timer: 1500
-        })
-      }
-    }, */
-    async editProduct(productIndex, newData){
-      const productId = this.products[productIndex].id
+    async editProduct(productIndex, newData) {
+      const productId = this.products[productIndex].id;
       try {
-        const response = await axios.put(`${devRuta}/productos/${productId}/`,newData)
-        this.products[productIndex] = response.data
+        const response = await axios.put(
+          `${devRuta}/tienda/inventario/productos/${productId}`,
+          newData
+        );
+        this.products[productIndex] = response.data;
         Swal.fire({
-          icon: 'success',
-          title: 'Producto editado exitosamente',
+          icon: "success",
+          title: "Producto editado exitosamente",
           showConfirmButton: false,
-          timer: 2000
-        })
+          timer: 2000,
+        });
       } catch (error) {
-        
         Swal.fire({
-          icon: 'error',
-          title: 'Error al editar el producto',
-          text: 'Hubo un problema al actualizar la información del producto. Intente de nuevo más tarde.',
+          icon: "error",
+          title: "Error al editar el producto",
+          text: "Hubo un problema al actualizar la información del producto. Intente de nuevo más tarde.",
           showConfirmButton: false,
-          timer: 2000
-        })
+          timer: 2000,
+        });
       }
-      
     },
-    deleteProducts(product){
-
-    },
+    deleteProducts(product) {},
     addToCart(item) {
       let index = this.cartItems.findIndex((product) => product.id === item.id);
       if (index !== -1) {
@@ -84,12 +73,12 @@ export const useProductStore = defineStore("ProductStore", {
         item.quantity = 1;
         this.cartItems.push(item);
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Producto guardado',
-            showConfirmButton: false,
-            timer: 1500
-          });
+          position: "top-end",
+          icon: "success",
+          title: "Producto guardado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     },
     incrementQ(item) {
@@ -114,13 +103,13 @@ export const useProductStore = defineStore("ProductStore", {
         (product) => product.id !== item.id
       );
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Producto eliminado del carrito',
+        position: "top-end",
+        icon: "success",
+        title: "Producto eliminado del carrito",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
     },
   },
-  persist:true
+  persist: true,
 });
