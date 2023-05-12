@@ -22,7 +22,7 @@ export const useProductStore = defineStore("ProductStore", {
   },
   actions: {
     async fetchProducts() {
-      const response = await axios.get(devRuta+"/tienda/inventario/productos")
+      const response = await axios.get(devRuta+"/tienda/inventario/productos/")
       this.$state.products = response.data
     },
     /* editProducts(productoToUpdate, newValue){
@@ -40,7 +40,7 @@ export const useProductStore = defineStore("ProductStore", {
     async editProduct(productIndex, newData){
       const productId = this.products[productIndex].id
       try {
-        const response = await axios.put(`${devRuta}/productos/${productId}`,newData)
+        const response = await axios.put(`${devRuta}/productos/${productId}/`,newData)
         this.products[productIndex] = response.data
         Swal.fire({
           icon: 'success',

@@ -1,7 +1,15 @@
 import { defineStore } from "pinia";
-import axios from "axios";
 import router from "@/router";
+import axios from "axios";
+const axiosConfig = {
+  'Content-Type':'application/json;charset=UTF-8',
+  "Acces-Control-Allow-Origin":"*",
+  'Acces-Control-Allow-Methods':'*'
+}
 const devRuta = import.meta.env.VITE_APP_RUTA_API;
+axios.defaults.baseURL=devRuta
+axios.defaults.headers.common = axiosConfig
+
 const mockUser = {
   "id": 1,
   "nombre": "Bendite",
